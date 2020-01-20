@@ -20,7 +20,8 @@ jobs:
     - env:
         - BASE_IMAGE=centos:7.7.1908
       before_install:
-        - sed -i '/^%bcond_without git/ s/^/#/' foo.spec
+        - sed -i '/bcond_without git/ s/%/%%/' foo.spec
+        - sed -i '/bcond_without git/ s/^/#/' foo.spec
         - grep bcond_without foo.spec
 install:
   - |
