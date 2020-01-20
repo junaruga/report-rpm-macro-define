@@ -1,0 +1,1 @@
+# report-rpm-macro-define
