@@ -6,4 +6,4 @@ COPY . .
 RUN yum -y install rpm-build
 RUN rpm -q rpm-build
 
-CMD rpmbuild -ba foo.spec
+CMD ./test.sh
