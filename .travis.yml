@@ -9,6 +9,8 @@ jobs:
     - env:
         - BASE_IMAGE=fedora:31
     - env:
+        - BASE_IMAGE=centos:8.1.1911
+    - env:
         - BASE_IMAGE=centos:7.7.1908
 install:
   - |
