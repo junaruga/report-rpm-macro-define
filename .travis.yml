@@ -4,14 +4,24 @@ language: minimal
 services: docker
 jobs:
   include:
+    # OK case
     - env:
         - BASE_IMAGE=fedora:rawhide
+    # OK case
     - env:
         - BASE_IMAGE=fedora:31
+    # OK case
     - env:
         - BASE_IMAGE=centos:8.1.1911
+    # NG case: Macro is not evaluated.
     - env:
         - BASE_IMAGE=centos:7.7.1908
+    # OK case: Macro is evaluated.
+    - env:
+        - BASE_IMAGE=centos:7.7.1908
+      before_install:
+        - sed -i '/^%bcond_without git/ /^/#/' foo.spec
+        - grep ^bcond_without foo.spec
 install:
   - |
     travis_retry docker build --rm -t my-container \
