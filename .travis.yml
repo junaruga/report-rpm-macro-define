@@ -1,0 +1,20 @@
+dist: xenial
+os: linux
+language: minimal
+services: docker
+jobs:
+  include:
+    - env:
+        - BASE_IMAGE=fedora:rawhide
+    - env:
+        - BASE_IMAGE=fedora:31
+    - env:
+        - BASE_IMAGE=centos:7.7.1908
+install:
+  - |
+    travis_retry docker build --rm -t my-container \
+      --build-arg BASE_IMAGE=${BASE_IMAGE} \
+      -f Dockerfile \
+      .
+script:
+  - docker run --rm -t my-container
