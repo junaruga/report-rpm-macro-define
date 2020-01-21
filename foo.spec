@@ -1,5 +1,7 @@
 %global release 2
-%{!?release_string:%define release_string %{release}%{?dist}}
+%if ! 0%{?release_string}
+%define release_string %{release}%{?dist}
+%endif
 
 %global aaa 2
 %{!?bbb:%define bbb %{aaa}}
